@@ -7,8 +7,8 @@ const config = {
         NoValidTemplate: "No valid/regex-error template with featherid/htmltag: ",
     },
     regex: {
-        FeatheridMatch: `<\\s*{id}(>|\\s[^>]*>)((\\s|.)*?)<\/{id}(>|\\s[^>]*>)`,
-        FeatheridMatchFlags: "gmi",
+        FeatherIdMatch: `<\\s*{id}(>|\\s[^>]*>)((\\s|.)*?)<\/{id}(>|\\s[^>]*>)`,
+        FeatherIdMatchFlags: "gmi",
         FeatherPropsMatch: /{{([^}}]*)}}/gm
     },
     names: {
@@ -194,8 +194,8 @@ export class feather {
         const matches = [
             ...this.__imports__.html.raw.matchAll(
                 new RegExp(
-                    config.regex.FeatheridMatch.replaceAll("{id}", TemplateId), 
-                    config.regex.FeatheridMatchFlags
+                    config.regex.FeatherIdMatch.replaceAll("{id}", TemplateId), 
+                    config.regex.FeatherIdMatchFlags
                 )
             )
         ]
