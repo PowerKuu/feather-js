@@ -1,3 +1,20 @@
+
+
+//
+
+
+
+//    This is a example version of feather-js 
+//    !Dont use this in youre project, download the actual version from https://github.com/PowerKuu/feather-js
+
+
+
+
+//
+
+
+
+
 const config = {
     errors: {
         FunctionDupe: "Function already exists in document",
