@@ -1,3 +1,4 @@
+// Basic configuration for Feather.js
 const config = {
     errors: {
         FunctionDupe: "Function already exists in document",
@@ -15,6 +16,8 @@ const config = {
     }
 }
 
+
+// Utility functions for Feather.js
 const utils = {
     html: {
         escape: (html) => {
@@ -65,7 +68,7 @@ const utils = {
     },
 }
 
-//!Main feather class
+//Main feather class
 export class feather {
     constructor(WarnUslessProperties = false, TrustKey = null){
         this.__TrustKey__ = TrustKey || utils.string.uuid()
@@ -87,7 +90,7 @@ export class feather {
             functions: {}
         }
 
-        //!Use this to add a new template to the feather instance
+        //? Use this to add a new template to the feather instance
         this.import = {
             css: (PathArray) => {
                 for (var path of PathArray){
@@ -123,7 +126,7 @@ export class feather {
         return ""
     }
 
-    //! Trust property to be used in the template
+    //? Trust property to be used in the template
     trust(string){
         return {
             html: string,
@@ -131,7 +134,7 @@ export class feather {
         }
     }
     
-    //!Bake function to string
+    //? Bake function to string
     function(FunctionRef, agrument, TrustFunction = true){
         const FunctionHash = utils.string.hash(String(FunctionRef))
         const CachedFunction = this.__cache__.functions[FunctionHash]
@@ -152,7 +155,7 @@ export class feather {
         return TrustFunction ? this.trust(product) :  product
     }
 
-    //!Bake a new template
+    //? Bake a new template
     bake(TemplateId, properties) {
         if (Array.isArray(properties)){
             const string = []
@@ -187,7 +190,7 @@ export class feather {
         return new BakedTemplate(TemplateClone, this.__TrustKey__)
     }
 
-    //!Private function to clone a template
+    //? Private function to clone a template
     __CloneTemplate__(TemplateId){
         const matches = [
             ...this.__imports__.html.raw.matchAll(
@@ -212,8 +215,10 @@ export class feather {
         return template[2]
     }
 }
-//!
+//?
 
+
+//? BakedTemplate class to represent a baked template
 export class BakedTemplate {
     constructor(html, __TrustKey__) {
         this.html = html
@@ -227,7 +232,8 @@ export class BakedTemplate {
         for (var node of QuerySelectorMatch){node.innerHTML += this.html}
 
         return this
-    }
+    }   
+
 
     set (QuerySelector) {
         const QuerySelectorMatch = document.querySelectorAll(QuerySelector)
@@ -237,7 +243,9 @@ export class BakedTemplate {
 
         return this
     }
+    
 
+    //? Useless function that will be called when the template is loaded
     onload (callback) {
         callback()
         return this
