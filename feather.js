@@ -1,10 +1,10 @@
-// Basic configuration for Feather.js
+//? Basic configuration for Feather.js
 const config = {
     errors: {
         FunctionDupe: "Function already exists in document",
-        NoTemplate: "No found template with featherid/htmltag ",
-        NoTemplateProperties: "No template properties for ",
-        NoValidTemplate: "No valid template with featherid/htmltag ",
+        NoTemplate: "No template found with featherid/htmltag: ",
+        NoTemplateProperties: "No template properties for: ",
+        NoValidTemplate: "No valid/regex-error template with featherid/htmltag: ",
     },
     regex: {
         FeatheridMatch: `<\\s*{id}(>|\\s[^>]*>)((\\s|.)*?)<\/{id}(>|\\s[^>]*>)`,
@@ -17,7 +17,7 @@ const config = {
 }
 
 
-// Utility functions for Feather.js
+//? Utility functions for Feather.js
 const utils = {
     html: {
         escape: (html) => {
@@ -34,16 +34,16 @@ const utils = {
 
     css: {
         create: (id) => {
-            var elememt = document.createElement("style")
+            const StyleElement = document.createElement("style")
 
-            elememt.appendChild(document.createTextNode(""))
+            StyleElement.appendChild(document.createTextNode(""))
 
-            elememt.rel = "stylesheet"
-            elememt.id = id
+            StyleElement.rel = "stylesheet"
+            StyleElement.id = id
 
-            document.head.appendChild(elememt)
+            document.head.appendChild(StyleElement)
 
-            return elememt
+            return StyleElement
         }
 
     },
@@ -64,11 +64,11 @@ const utils = {
                 var r = Math.random() * 16 | 0, v = c == "x" ? r : (r & 0x3 | 0x8)
                 return v.toString(16)
             })
-        }
+        },
     },
 }
 
-//Main feather class
+//? Main feather class
 export class feather {
     constructor(WarnUslessProperties = false, TrustKey = null){
         this.__TrustKey__ = TrustKey || utils.string.uuid()
@@ -119,7 +119,6 @@ export class feather {
 
     EscapeProperty(property){
         const IsPropertyTrusted = property[this.__TrustKey__]
-
 
         if (IsPropertyTrusted && property) return String(property.html)
         else if(property) return utils.html.escape(String(property))
@@ -215,9 +214,7 @@ export class feather {
         return template[2]
     }
 }
-//?
 
-// Test
 //? BakedTemplate class to represent a baked template
 export class BakedTemplate {
     constructor(html, __TrustKey__) {
