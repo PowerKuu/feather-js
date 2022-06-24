@@ -1,3 +1,9 @@
+
+
+//! https://github.com/PowerKuu/feather-js v 1.1.0
+
+
+
 //? Basic configuration for Feather.js
 const config = {
     errors: {
