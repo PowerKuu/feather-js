@@ -122,12 +122,14 @@ export class feather {
         }
     }
 
+    //? Escape a property
     EscapeProperty(property){
-        const IsPropertyTrusted = property[this.__TrustKey__]
+        if (property == undefined) return ""
 
-        if (IsPropertyTrusted && property) return String(property.html)
-        else if(property) return utils.html.escape(String(property))
-        return ""
+        const IsPropertyTrusted = property && property[this.__TrustKey__]
+
+        if (IsPropertyTrusted) return String(property.html)
+        else return utils.html.escape(String(property))
     }
 
     //? Trust property to be used in the template
@@ -175,8 +177,8 @@ export class feather {
             const property = properties[PropertyKey]    
             var PropertyReplaceValue = ""
 
-            if (property == undefined && this.WarnUslessProperties) {
-                console.warn(config.errors.NoTemplateProperties)
+            if (property == undefined) {
+                if (this.WarnUslessProperties) console.warn(config.errors.NoTemplateProperties)
                 continue
             }
 
