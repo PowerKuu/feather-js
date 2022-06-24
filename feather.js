@@ -1,6 +1,6 @@
 
 
-//! https://github.com/PowerKuu/feather-js v 1.1.0
+//! https://github.com/PowerKuu/feather-js V-1.1.0
 
 
 //? Basic configuration for Feather.js
